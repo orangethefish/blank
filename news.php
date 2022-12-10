@@ -1,25 +1,26 @@
 <?php
 include 'db_connection.php';
+session_start();
 $conn = OpenCon();
-$query ="SELECT * FROM `products`";
+$query ="SELECT * FROM `product_testing_news`";
 //echo "Connected Successfully";
 $result=$conn->query($query);
-//if ($result->num_rows > 0)
-//{
+// if ($result->num_rows > 0)
+// {
 //    // OUTPUT DATA OF EACH ROW
 //    while($row = $result->fetch_assoc())
 //    {
 //        echo "Roll No: " .
 //            $row["id"]. " - Name: " .
-//            $row["name"]. " | Description: " .
-//            $row["description"]. " | Price: " .
-//            $row["price"]. " | Image: " ."<br>";
+//            $row["author"]. " | Description: " .
+//            $row["headline"]. " | Price: " .
+//            $row["detail"]. " | Image: " ."<br>";
 //    }
-//}
-//else {
+// }
+// else {
 //    echo "0 results";
-//}
-//CloseCon($conn);
+// }
+// CloseCon($conn);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,95 +37,22 @@ $result=$conn->query($query);
 
 <body>
     
-    <div class="container-fluid sticky-top px-0 bg-light">
-        <header class="blog-header py-3">
-            <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-4 text-left">
-                    <div class="hiddencanvas">
-                        <a class="btn btn-white " data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-                            aria-controls="offcanvasExample">
-                            <div class="menu-icon"></div>
-                            <div class="menu-icon"></div>
-                            <div class="menu-icon"></div>
-                        </a>
-                        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                            aria-labelledby="offcanvasExampleLabel">
-                            <div class="offcanvas-header">
-                                <!-- <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5> -->
-                                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="offcanvas-body">
-                                <div>
-                                    <ul class="firstul border-bottom">
-                                        <a href="" class="row p-2 my-3 text-dark ">FASHION</a>
-                                        <a href="" class="row p-2 my-3 text-dark ">BEAUTY</a>
-                                        <a href="" class="row p-2 my-3 text-dark ">CULTURE</a>
-                                        <a href="" class="row p-2 my-3 text-dark ">LIVING</a>
-                                        <a href="" class="row p-2 my-3 text-dark ">RUNWAY</a>
-                                        <a href="" class="row p-2 my-3 text-dark ">SHOPPING</a>
-                                        <a href="" class="row p-2 my-3 text-dark ">VIDEO</a>
-                                        <a href="" class="row p-2 my-3 text-dark ">VOGUE CLUB</a>
-                                        <a href="" class="row p-2 my-3 text-dark ">PHOTOVOGUE</a>
-                                    </ul>
-                                </div>
-                                <div class="">
-                                    <ul class="secul border-bottom">
-                                        <a href="" class="row p-2 my-2 text-dark ">Seach</a>
-                                        <a href="" class="row p-2 my-2 text-dark ">Sign In</a>
-                                        <a href="" class="row p-2 my-2 text-dark ">Subscribe</a>
-                                        <br>
-                                        <a href="" class="row p-2 my-2 text-dark ">Vogue.com</a>
-                                        <a href="" class="row p-2 my-2 text-dark ">Vogue Forces of Fashion</a>
-                                        <a href="" class="row p-2 my-2 text-dark ">Vogue Archive</a>
-                                        <a href="" class="row p-2 my-2 text-dark ">Vogue Podcast</a>
-                                        <a href="" class="row p-2 my-2 text-dark ">Masterhead</a>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <ul class="d-flex justify-content-center thirdul">
-                                        <i class="fa fa-facebook-f px-3" style="font-size:2rem;color:black"></i>
-                                        <i class="fa fa-twitter px-3" style="font-size:2rem;color:black"></i>
-                                        <i class="fa fa-pinterest px-3" style="font-size:2rem;color:black"></i>
-                                        <i class="fa fa-instagram px-3" style="font-size:2rem;color:black"></i>
-                                        <i class="fa fa-youtube-play px-3" style="font-size:2rem;color:black"></i>
-                                    </ul>
-                                </div>
-                                <!-- <div class="dropdown mt-3">
-                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                                Dropdown button
-                              </button>
-                              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                              </ul>
-                            </div> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-4 text-center">
-                    <img src="./Vogue_logo.svg" alt="logo" height="35px">
-    
-                </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a href="#" class="text-dark px-3 button">SIGN IN</a>
-                    <a href="#" class="text-dark px-3 button">SUBSCRIBE</a>
-                    <a class="text-dark" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="mx-3">
-                            <circle cx="10.5" cy="10.5" r="7.5"></circle>
-                            <line x1="21" y1="21" x2="15.8" y2="15.8"></line>
-                        </svg>
-                    </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#!">Start Bootstrap</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                    </ul>
                 </div>
             </div>
-        </header> 
-    </div>
+        </nav>
     <!--Section: News of the day-->
-    <div class="card d-flex mx-auto" style="width: 75%">
+    <div class="card d-flex mx-auto my-5" style="width: 75%">
         <div class="card-body">
             <!--Table-->
             <table class="table-responsive">
@@ -141,7 +69,43 @@ $result=$conn->query($query);
                 <!--Table head-->
                 <!--Table body-->
                 <tbody>
-                    <tr>
+                    <?php
+                        if ($result->num_rows > 0){
+                        // OUTPUT DATA OF EACH ROW
+                        while($row = $result->fetch_assoc()){
+                            echo "<tr>";
+                            echo '<td scope="row" class="text-nowrap">
+    
+                            <a href="detail.php?id=' . $row['id'] . '" type="button" class="btn btn-outline-dark-green btn-sm p-1 m-0 waves-effect">
+                                <span class="value">'.$row['like_count'].'</span>
+                                <i class="fas fa-thumbs-up ml-1"></i>
+                            </a>
+                            <a href="detail.php?id=' . $row['id'] . '" button" class="btn btn-outline-primary btn-sm p-1 m-0 waves-effect">
+                                <span class="value">'.$row['like_count'].'</span>
+                                <i class="fas fa-thumbs-down ml-1"></i>
+                            </a>
+                        </td>';
+                            echo '<td class="text-start">
+                            <a href="detail.php?id=' . $row['id'] . '" class="font-weight-bold text-success">',$row['headline'].'</a>';
+                            echo '<div class="my-2">
+                                <span class="text-dark">
+                                <strong>' . $row['author'] . '</strong></span>';
+                            echo '<span> ' . $row['date'] . '</span>';
+                            echo '</div>';
+                            echo '</td>';
+                            echo '<td>
+                            <a href="detail.php?id=' . $row['id'] . '" class="text-dark">
+                                <span>'.$row['comment_count'].'</span>
+                                <i class="fas fa-comments ml-1"></i>
+                            </a>
+                            </td>';
+                        }
+                        }else {
+                        echo "No headlines!";
+                        }
+                        CloseCon($conn);
+                    ?>
+                    <!-- <tr>
                         <td scope="row" class="text-nowrap">
     
                             <a href="#" type="button" class="btn btn-outline-dark-green btn-sm p-1 m-0 waves-effect">
@@ -175,7 +139,7 @@ $result=$conn->query($query);
                             </a>
                         </td>
                     </tr>
-                    
+                     -->
                 </tbody>
                 <!--Table body-->
             </table>
