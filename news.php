@@ -1,3 +1,26 @@
+<?php
+include 'db_connection.php';
+$conn = OpenCon();
+$query ="SELECT * FROM `products`";
+//echo "Connected Successfully";
+$result=$conn->query($query);
+//if ($result->num_rows > 0)
+//{
+//    // OUTPUT DATA OF EACH ROW
+//    while($row = $result->fetch_assoc())
+//    {
+//        echo "Roll No: " .
+//            $row["id"]. " - Name: " .
+//            $row["name"]. " | Description: " .
+//            $row["description"]. " | Price: " .
+//            $row["price"]. " | Image: " ."<br>";
+//    }
+//}
+//else {
+//    echo "0 results";
+//}
+//CloseCon($conn);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
