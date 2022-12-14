@@ -1,9 +1,19 @@
 <?php
+function numcheck($value){
+    for($i = 0; $i < strlen($value); $i++){
+        if(strcmp($value[$i],'0')==-1||strcmp($value[$i],'9')==1){
+            header("Location: news.php");
+            // echo $value[$i];
+            break;
+        }
+    }
+}
 include 'db_connection.php';
 session_start();
 $conn = OpenCon();
 // echo $_SERVER['REQUEST_URI'];
 $id=$_GET['id'];
+numcheck($id);
 $author = "";
 $headline = "";
 $date = 0;
@@ -40,12 +50,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO news_comment (post_no, owner, date, detail)
         VALUES ('.$id.', 'Orange','".$date."','".$_POST['comment']."')";
 
-if ($conn->query($sql) === TRUE) {
-//   echo "New record created successfully";
-} else {
-//   echo "Error: " . $sql . "<br>" . $conn->error;
+        if ($conn->query($sql) === TRUE) {
+        //   echo "New record created successfully";
+        } else {
+        //   echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    CloseCon($conn);
 }
+if(isset($_POST['delete_id'])) {
+    $conn = OpenCon();
+    $delete_id = $_POST['delete_id'];
+    $delete = "DELETE FROM news_comment WHERE id = '$delete_id'";
+    if ($conn->query($delete) === TRUE) {
+        //   echo "Record deleted successfully";
+        } else {
+        //   echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    CloseCon($conn);
+}
 }
 ?>
 <!DOCTYPE html>
@@ -145,7 +167,7 @@ if ($conn->query($sql) === TRUE) {
                                 <!-- Single comment-->
                                 <?php
                                 $conn = OpenCon();
-                                $query ="SELECT * FROM `news_comment` ORDER BY date ASC";
+                                $query ="SELECT * FROM `news_comment` ORDER BY id ASC";
                                 //echo "Connected Successfully";
                                 $result=$conn->query($query);
                                 if ($result->num_rows > 0)
@@ -154,14 +176,19 @@ if ($conn->query($sql) === TRUE) {
                                    while($row = $result->fetch_assoc())
                                    {
                                        if($row['post_no']==$id){
-                                            echo '<div class="d-flex my-2">
+                                            echo '<form class="mb-4" method="POST" action="">
+                                            <div class="d-flex my-2">
                                     <div class="flex-shrink-0"><img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png" width="40px" alt="..." /></div>
                                     <div class="ms-3 container">
                                         <div class="fw-bold">'.$row['owner'].'</div>
                                         '.$row['detail'].'
                                         </div>
-                                        <button class="btn btn-danger btn-sm">Delete</button>
-                                    </div>';
+                                        <input type="hidden" name="delete_id" value="'.$row['id'].'" />
+                                        <button type="submit" class="btn btn-danger pull-right" name="Delete">
+                                            Delete <i class="fa fa-arrow-circle-right"></i>
+                                        </button>
+                                    </div>
+                                    </form>';
                                        }
                                    }
                                 }
@@ -200,8 +227,8 @@ if ($conn->query($sql) === TRUE) {
                             <div class="row">
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Candle</a></li>
-                                        <li><a href="#!">Fragrant</a></li>
+                                        <li><a href="#!" class="text-success">Candle</a></li>
+                                        <li><a href="#!" class="text-success">Fragrant</a></li>
                                     </ul>
                                 </div>
                                 
@@ -223,6 +250,6 @@ if ($conn->query($sql) === TRUE) {
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script src="detail.js"></script>
     </body>
 </html>
