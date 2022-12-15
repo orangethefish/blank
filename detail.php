@@ -77,12 +77,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn = OpenCon();
         $sql = "INSERT INTO news_comment (post_no, owner, date, detail)
         VALUES ('.$id.', '".$current_user->getName()."','".$date."','".$_POST['comment']."')";
-        if ($conn->query($sql) === TRUE) {
+        f ($conn->query($sql) === TRUE) {
         //   echo "New record created successfully";
             $comment_count++;
             update_comment($comment_count,$id);
         } else {
-        //   echo "Error: " . $sql . "<br>" . $conn->error;
+        //   eicho "Error: " . $sql . "<br>" . $conn->error;
         }
         CloseCon($conn);
     }

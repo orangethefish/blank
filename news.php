@@ -35,6 +35,11 @@ $result=$conn->query($query);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,800;0,900;1,600&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,900&display=swap" rel="stylesheet">            
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./font/fontawesome-free-6.2.1-web/css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="news.css">
     <script src="https://unpkg.com/@popperjs/core@2"></script>
@@ -58,7 +63,9 @@ $result=$conn->query($query);
             </div>
         </nav>
     <!--Section: News of the day-->
-    <div class="card d-flex mx-auto my-5" style="width: 75%">
+    <section class="vh-100 bg-image"
+  style="background-color: #8fc4b7;">
+    <div class="card d-flex mx-auto my-5 bg-white" style="width: 75%">
         <div class="card-body">
             <!--Table-->
             <table class="table-responsive">
@@ -87,7 +94,7 @@ $result=$conn->query($query);
                                 <i class="fas fa-thumbs-up ml-1"></i>
                             </a>
                             <a href="detail.php?id=' . $row['id'] . '" button" class="btn btn-outline-primary btn-sm p-1 m-0 waves-effect">
-                                <span class="value">'.$row['like_count'].'</span>
+                                <span class="value">'.$row['dislike_count'].'</span>
                                 <i class="fas fa-thumbs-down ml-1"></i>
                             </a>
                         </td>';
@@ -99,7 +106,7 @@ $result=$conn->query($query);
                             echo '<span> ' . $row['date'] . '</span>';
                             echo '</div>';
                             echo '</td>';
-                            
+
                             echo '<td>
                             <a href="detail.php?id=' . $row['id'] . '" class="text-dark">
                                 <span>'.$row['comment_count'].'</span>
@@ -206,7 +213,145 @@ $result=$conn->query($query);
             <!--Bottom Table UI-->
         </div>
     </div>
+    </section>
+    <footer
+              class="text-center text-lg-start pt-5 pb-3 text-white"
+              style="background-color: #272727"
+              >
+        <!-- Grid container -->
+        <div class="container p-0 pb-0">
+          <!-- Section: Links -->
+          <section class="">
+            <!--Grid row-->
+            <div class="row">
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mt-3">
+                <div class="text-uppercase mb-4 font-weight-bold">
+                  <div class="container__logofooter ms-4 ms-sm-0">
+                    <img class="img_footer" src="./ pictures/logo_footer.jpg" alt="">
+                    <h2>Candleaf</h2>
+                  </div>
+                  
+                </div>
+                <p>
+                  Your natural candle made for your home and for your wellness.
+                </p>
+              </div>
+              <!-- Grid column -->
     
+              <hr class="w-100 clearfix d-md-none" />
+    
+              <!-- Grid column -->
+              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold color--primary">Discovery</h6>
+                <p>
+                  <a class="text-white">New season</a>
+                </p>
+                <p>
+                  <a class="text-white">Most searched</a>
+                </p>
+                <p>
+                  <a class="text-white">Most selled</a>
+                </p>
+    
+              </div>
+              <!-- Grid column -->
+    
+              <hr class="w-100 clearfix d-md-none" />
+    
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold color--primary">
+                  About
+                </h6>
+    
+                <p>
+                  <a class="text-white">Help</a>
+                </p>
+                <p>
+                  <a class="text-white">Shipping</a>
+                </p>
+                <p>
+                  <a class="text-white">Affiliate</a>
+                </p>
+              </div>
+    
+              <!-- Grid column -->
+              <hr class="w-100 clearfix d-md-none" />
+    
+              <!-- Grid column -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold color--primary">Info</h6>
+                <p><i class="fas fa-home mr-3"></i>  Terms & Conditions </p>
+                <p><i class="fas fa-envelope mr-3"></i>  Gmail</p>
+                <p><i class="fas fa-phone mr-3"></i>  Contact us</p>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!--Grid row-->
+          </section>
+          <!-- Section: Links -->
+    
+          <hr class="my-3">
+    
+          <!-- Section: Copyright -->
+          <section class="p-3 pt-0">
+            <div class="row d-flex align-items-center">
+              <!-- Grid column -->
+              <div class="col-md-7 col-lg-8 text-center text-md-start">
+                <!-- Copyright -->
+                <div class="p-3">
+                  ©Candleaf 
+                  <a class="text-white" href="https://mdbootstrap.com/"
+                     >All Rights Reserved.</a
+                    >
+                </div>
+                <!-- Copyright -->
+              </div>
+              <!-- Grid column -->
+    
+              <!-- Grid column -->
+              <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
+                <!-- Facebook -->
+                <a
+                   class="btn btn-outline-light btn-floating m-1"
+                   class="text-white"
+                   role="button"
+                   ><i class="fab fa-facebook-f"></i
+                  ></a>
+    
+                <!-- Twitter -->
+                <a
+                   class="btn btn-outline-light btn-floating m-1"
+                   class="text-white"
+                   role="button"
+                   ><i class="fab fa-twitter"></i
+                  ></a>
+    
+                <!-- Google -->
+                <a
+                   class="btn btn-outline-light btn-floating m-1"
+                   class="text-white"
+                   role="button"
+                   ><i class="fab fa-google"></i
+                  ></a>
+    
+                <!-- Instagram -->
+                <a
+                   class="btn btn-outline-light btn-floating m-1"
+                   class="text-white"
+                   role="button"
+                   ><i class="fab fa-instagram"></i
+                  ></a>
+              </div>
+              <!-- Grid column -->
+            </div>
+          </section>
+          <!-- Section: Copyright -->
+        </div>
+        <!-- Grid container -->
+        </footer>
+      <!-- Footer -->
     <!--Section: News of the day-->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="js/bootstrap.bundle.js"></script>
