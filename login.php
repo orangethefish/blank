@@ -47,6 +47,9 @@ $_SESSION['current_user'] = $current_user;
 <?php
 session_start();
 // define variables and set to empty values
+if(strcmp($current_user->getUser(),"unset")==0){
+    // header("Location: news.php");
+}
 $email = $password = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -68,11 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // echo "Login successfully.";
                 header("Location: news.php");
                 break;
-            }else{
-                echo '<div class="text-danger py-2">Wrong Email or Password!</div>';
-                break;
             }
         }
+        echo '<div class="text-danger">Wrong Email or Password!</div>';
     }   
     CloseCon($conn);  
 }
@@ -97,7 +98,7 @@ function valid_password($password)
     $number    = preg_match('@[0-9]@', $password);
 
     if(!$uppercase || !$lowercase || !$number || strlen($password) < 3) {
-        echo 'Password should be at least 3 characters in length and should include at least one upper/lowercase character and one number.';
+        echo '<div class="text-danger">Password should be at least 3 characters in length and should include at least one upper/lowercase character and one number.</div>';
         echo nl2br("\n");
         return false;
     }
@@ -124,8 +125,30 @@ function valid_password($password)
             </fieldset>
         </form>
         <p id="status"></p>
+        <a href="./sign_up.php" class="">Don't have one? Create now </a>
     </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
  <footer class="py-5 bg-dark ">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
 </footer>
