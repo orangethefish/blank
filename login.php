@@ -63,13 +63,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         {
             
             if(strcmp($row['username'], $email)==0&&strcmp($row['password'], $password)==0){
-                $current_user->setUser($email,$row['role']);
+                $current_user->setUser($email,$row['role'],$row['name']);
                 $_SESSION['current_user'] = serialize($current_user);
                 // echo "Login successfully.";
                 header("Location: news.php");
                 break;
             }else{
                 echo '<div class="text-danger py-2">Wrong Email or Password!</div>';
+                break;
             }
         }
     }   

@@ -8,6 +8,7 @@ function numcheck($value){
         }
     }
 }
+
 include 'db_connection.php';
 require_once('session.php');
 session_start();
@@ -16,7 +17,7 @@ if (isset($_SESSION['current_user'])) {
 }else{
     $current_user=new User();
 }
-// echo $current_user->getUser();
+// echo $current_user->getName();
 $conn = OpenCon();
 // echo $_SERVER['REQUEST_URI'];
 $id=$_GET['id'];
@@ -55,26 +56,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['comment'])) {
         $conn = OpenCon();
         $sql = "INSERT INTO news_comment (post_no, owner, date, detail)
-        VALUES ('.$id.', 'Orange','".$date."','".$_POST['comment']."')";
-
+        VALUES ('.$id.', '".$current_user->getName()."','".$date."','".$_POST['comment']."')";
         if ($conn->query($sql) === TRUE) {
         //   echo "New record created successfully";
+            $comment_count++;
+            update_comment($comment_count,$id);
         } else {
         //   echo "Error: " . $sql . "<br>" . $conn->error;
         }
     CloseCon($conn);
-}
+    }
 if(isset($_POST['delete_id'])) {
     $conn = OpenCon();
     $delete_id = $_POST['delete_id'];
     $delete = "DELETE FROM news_comment WHERE id = '$delete_id'";
     if ($conn->query($delete) === TRUE) {
         //   echo "Record deleted successfully";
+            $comment_count--;
+            update_comment($comment_count,$id);
         } else {
         //   echo "Error: " . $sql . "<br>" . $conn->error;
     }
     CloseCon($conn);
+    }
 }
+function update_comment($comment_count,$id){
+    $conn = OpenCon();
+    $update_comment = "UPDATE product_testing_news SET comment_count=$comment_count WHERE id=$id";
+    if ($conn->query($update_comment) === TRUE) {
+        // echo "Record updated successfully";
+    } else {
+        // echo "Error updating record: " . $conn->error;
+    }
+CloseCon($conn);
 }
 ?>
 <!DOCTYPE html>
@@ -207,8 +221,11 @@ if(isset($_POST['delete_id'])) {
                                         ' . $row['detail'] . '
                                         </div>
                                         <input type="hidden" name="delete_id" value="' . $row['id'] . '" />
-                                        <button type="submit" class="btn btn-danger pull-right" name="Delete">
+                                        <button type="submit" class="btn btn-danger pull-right mx-2" name="admin_button" value="delete">
                                             Delete <i class="fa fa-arrow-circle-right"></i>
+                                        </button>
+                                        <button type="submit" class="btn btn-danger pull-right" name="admin_button" value="block">
+                                            Block <i class="fa fa-arrow-circle-right"></i>
                                         </button>
                                     </div>
                                     </form>';
